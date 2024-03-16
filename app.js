@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 
 const pageRoute = require('./routes/pageRouter');
 const courseRoute = require('./routes/courseRoute');
+const categoryRoute = require('./routes/categoryRoute');
+
 
 const app = express();
 
@@ -23,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-
 //routes
 app.use('/', pageRoute);
 app.use('/courses', courseRoute);
+app.use('/categories', categoryRoute);
 
 app.listen(port, () => {
     console.log(`Smart edu app listen on ${port} port`);
