@@ -37,7 +37,7 @@ app.use(session({
 app.use('*', (req, res, next) => {
   userIN = req.session.userID;
   next();
-})
+});
 app.use('/', pageRoute);
 app.use('/courses', courseRoute);
 app.use('/categories', categoryRoute);
