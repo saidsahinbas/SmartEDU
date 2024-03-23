@@ -3,7 +3,7 @@
 
 	<div class="all-title-box">
 		<div class="container text-center">
-			<h1>Course Single<span class="m_1">Lorem Ipsum dolroin gravida nibh vel velit.</span></h1>
+			<h1><%= course.name %><span class="m_1">Lorem Ipsum dolroin gravida nibh vel velit.</span></h1>
 		</div>
 	</div>
 	
@@ -17,8 +17,8 @@
 						</div>
 						<div class="post-content">
 							<div class="post-date">
-								<span class="day">30</span>
-								<span class="month">Nov</span>
+								<span class="day"><%= course.createdAt.getDate() %></span>
+								<span class="month"><%= month %></span>
 							</div>
 							<div class="meta-info-blog">
 								<span><i class="fa fa-calendar"></i> <a href="#"><%= course.createdAt.toDateString() %></a> </span>
@@ -39,7 +39,7 @@
 					
 					<div class="blog-author">
 						<div class="author-bio">
-							<h3 class="author_name"><a href="#">Tom Jobs</a></h3>
+							<h3 class="author_name"><a href="#"><%= course.user.name %></a></h3>
 							<h5>CEO at <a href="#">SmartEDU</a></h5>
 							<p class="author_det">
 								Lorem ipsum dolor sit amet, consectetur adip, sed do eiusmod tempor incididunt  ut aut reiciendise voluptat maiores alias consequaturs aut perferendis doloribus omnis saperet docendi nec, eos ea alii molestiae aliquand.
