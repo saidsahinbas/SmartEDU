@@ -33,7 +33,12 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/smart-edu-db' })
-}))
+}));
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.flashMessages = req.flash();
+  next();
+});
 
 //routes
 app.use('*', (req, res, next) => {
