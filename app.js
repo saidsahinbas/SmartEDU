@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const dotenv = require('dotenv').config();
+const flash = require('connect-flash');
 
 const pageRoute = require('./routes/pageRouter');
 const courseRoute = require('./routes/courseRoute');
