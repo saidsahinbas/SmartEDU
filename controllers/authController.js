@@ -32,10 +32,10 @@ exports.loginUser = async (req, res) => {
     await User.findOne({ email }).then(user => {
         if (user) {
             bcrypt.compare(password, user.password, (err, result) => {
-                if(result){
+                if (result) {
                     req.session.userID = user._id;
                     res.status(200).redirect('/users/dashboard');
-                } else{
+                } else {
                     req.flash("error", `Your password is not correct`);
                     res.status(400).redirect('/login')
                 }
@@ -45,7 +45,7 @@ exports.loginUser = async (req, res) => {
             res.status(400).redirect('/login')
         }
     }).catch(error => {
-        
+
         res.status(404).redirect('/register');
     })
 };
@@ -61,10 +61,27 @@ exports.getDashboardPage = async (req, res) => {
     const user = await User.findOne({ _id: req.session.userID }).populate('courses');
     const categories = await Category.find({});
     const courses = await Course.find({ user: req.session.userID });
+    const users = await User.find({});
     res.status(200).render('dashboard', {
         page_name: 'dashboard',
         categories,
         user,
-        courses
+        courses,
+        users
     });
 };
+
+
+exports.deleteUser = async (req, res) => {
+    try {
+        const user = await User.findByIdAndDelete(req.params.id);
+        await Course.deleteMany({ user: req.params.id });
+
+        res.status(200).redirect('/users/dashboard');
+    } catch (error) {
+        res.status(404).json({
+            status: 'fail',
+            error
+        })
+    }
+}
