@@ -243,7 +243,7 @@
 			</div>
 			</div>
 			</div>
-			</div>
+		</div>
 	
 	<% } %>
 
@@ -275,6 +275,7 @@
 				</div><!-- end row -->
 				<div class="row mt-5">
 					<table class="table">
+						<h2>Users</h2>
 						<thead>
 						  <tr>
 							<th scope="col">ID</th>
@@ -289,7 +290,32 @@
 							<th scope="row"><%= users[i]._id %></th>
 							<td><%= users[i].email %></td>
 							<td><%= users[i].role %></td>
-							<td><a class="btn btn-danger text-white rounded-0" href="/users/<%= users[i]._id %>?_method=DELETE"
+							<td><a class="btn btn-danger text-white rounded-1" href="/users/<%= users[i]._id %>?_method=DELETE"
+								onclick="return confirm('Are you sure ?')">Delete</a></td>
+						  </tr>
+						  <% } %>
+						</tbody>
+					  </table>
+				</div>
+				<div class="row mt-5">
+					<h2>Categories</h2>
+					<table class="table">
+						<thead>
+						  <tr>
+							<th scope="col">ID</th>
+							<th scope="col">Name</th>
+							<th scope="col">Add</th>
+							<th scope="col">Delete</th>
+						  </tr>
+						</thead>
+						<tbody>
+							<% for(let i = 0; i < categories.length; i++){ %>
+						  <tr>
+							<th scope="row"><%= categories[i]._id %></th>
+							<td><%= categories[i].name %></td>
+							<td><button class="btn btn-primary text-white rounded-0" 
+								data-toggle="modal" data-target="#addCategory"><span>Add</span></button></td>
+							<td><a class="btn btn-danger text-white rounded-1" href="/categories/<%= categories[i]._id %>?_method=DELETE"
 								onclick="return confirm('Are you sure ?')">Delete</a></td>
 						  </tr>
 						  <% } %>
@@ -298,6 +324,38 @@
 				</div>
 			</div><!-- end container -->
 		</div><!-- end section -->
+		<!-- ADD Modal -->
+		<div class="modal fade" id="addCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+			<div class="modal-body customer-box">
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div class="tab-pane active" id="Login">
+						<form method="POST" action="/categories" class="form-horizontal">
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input type="text" name="name" class="form-control"  placeholder="Category Name">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-10">
+									<button type="submit" class="btn btn-light btn-radius btn-brd grd1">
+										Submit
+									</button>
+									<button type="submit" class="btn btn-light btn-radius btn-brd grd1"
+										data-dismiss="modal" aria-hidden="true">
+										Cancel
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			</div>
+			</div>
+			</div>
 
 		<!-- ADD Modal -->
 		<div class="modal fade" id="addCourse" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
